@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+type Props = {}
 type Inputs = { // kiểu dữ liệu của từng input
     name: string,
     price: number,
@@ -19,7 +20,7 @@ const ProductAdd = (props: ProductAddProps) => {
         // console.log(dataInput);  
         props.onAdd(dataInput);
         //chuyển trang 
-        navigate("/");
+        navigate("/admin/product");
 
     }
     return (
