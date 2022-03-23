@@ -1,21 +1,18 @@
-import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-type Props = {}
 type Inputs = { // kiểu dữ liệu của từng input
     name: string,
-    price: number,
+    price: number
 };
 
 type ProductAddProps = {
-    name: string,
     onAdd: (product: Inputs) => void
 }
 const ProductAdd = (props: ProductAddProps) => {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
     //sử dụng hook useNavigate để chuyển sang
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const onSubmit: SubmitHandler<Inputs> = (dataInput) => {
         // console.log(dataInput);  
         props.onAdd(dataInput);
