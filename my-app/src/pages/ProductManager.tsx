@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 
 type ProductMangagerProps = {
     products: ProductType[];
-    onRemove: (id: number) => void
+    onRemove: (id: number) => void;
 }
 
 const ProductManager = (props: ProductMangagerProps) => {
     return (
         <div>
-            <button onClick={() => props.onAdd()}>Thêm mới</button>
+
             <table className="table table-bordered">
                 <tbody>
                     {props.products.map((item, index) => {
