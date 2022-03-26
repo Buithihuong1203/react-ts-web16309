@@ -1,16 +1,14 @@
 import React from 'react'
-import { Product } from '../types/product';
+//import { Product } from '../types/product';
 
 type ShowInfoProps = {
-    person: {
-        name: Product
-    }
+    children: JSX.Element
 }
 const ShowInfo = (props: ShowInfoProps) => {
     console.log(props);
 
     return (
-        <div>ShowInfo</div>
+        <div>{props.children}</div>
     )
 }
 

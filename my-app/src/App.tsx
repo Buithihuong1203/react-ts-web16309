@@ -15,6 +15,11 @@ import ProductManager from './pages/ProductManager';
 import ProductDetail from './pages/ProductDetail';
 import ProductAdd from './pages/ProductAdd';
 import ProductEdit from './pages/ProductEdit';
+import PrivateRouter from './components/PrivateRouter';
+import TestShowInfo from './components/TestShowInfo';
+import Signin from './pages/Signin';
+import { UserType } from './types/user';
+import { signin } from './api/user';
 
 
 //function App() {
@@ -38,6 +43,7 @@ import ProductEdit from './pages/ProductEdit';
 
 function App() {
     const [products, setProducts] = useState<ProductType[]>([])
+    const [users, setUsers] = useState<UserType[]>([])
 
     useEffect(() => {
         const getProducts = async () => {
@@ -74,6 +80,14 @@ function App() {
 
         }
     }
+    const onHandleSignin = async (user: UserType) => {
+
+        const data = await signin(user);
+        console.log(data)
+        //setUsers([...users, data]);
+
+
+    }
 
 
     return (
@@ -93,8 +107,9 @@ function App() {
                             <Route index element={<ProductPage />} />
                             <Route path=":id" element={<ProductDetail />} />
                         </Route>
+                        <Route path="signin" element={<Signin onSignIn={onHandleSignin} />} />
                     </Route>
-                    <Route path="admin" element={<AdminLayout />}>
+                    <Route path="admin" element={<PrivateRouter><AdminLayout /></PrivateRouter>}>
                         <Route index element={<Navigate to="dashboard" />} />
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="product">
@@ -102,6 +117,7 @@ function App() {
                             <Route path="add" element={<ProductAdd onAdd={onHandleAdd} />} />
                             <Route path=":id/edit" element={<ProductEdit onUpdate={onHandleUpdate} />} />
                         </Route>
+                        <Route path="login" element={<h1>Login page</h1>} />
 
                     </Route>
                 </Routes>
